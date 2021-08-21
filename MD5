@@ -1,0 +1,9 @@
+98eb11c8cb4e3c78c9729103365e32cf *DESCRIPTION
+2830d8faa38d0b7f3dae25657352daf5 *NAMESPACE
+dad0dba2e783ac58eb9cff4101e11d2d *R/convertId2.R
+ee6fc8fd26de51073e491b8dc8a08e06 *man/convert.alias.Rd
+58213fffb062569fc2f41d523468e0b2 *man/convert.bm.Rd
+edaddf6556d29ca2c4baa0cde4d851ef *man/convertId2.Rd
+cf2bfbb7ffa47e5ffb8ad9b2217a3773 *man/convertid.Rd
+fb99756c001b330badec05a3debc95b0 *man/get.bm.Rd
+a937b742291c4a6b5aee3e7a74fcb0ff *man/todisp2.Rd
