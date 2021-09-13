@@ -1,11 +1,11 @@
-ead692e7bfa4068f6bd343befda0a745 *DESCRIPTION
+f927318681e52dbd24b9df26d248290e *DESCRIPTION
 33e20460ae6afbb441a8c5a7aa8e57c3 *NAMESPACE
-3956d6f214e29a9805c5386e2679438a *R/convertId2.R
-b62381d92f3708f207032d7e6b92f746 *R/get_symbol_aliases.R
+28bfdf6cc714584cdeea4fe20eebbd55 *R/convertId2.R
+d9d798142ee400a23eec5c185f88f843 *R/get_symbol_aliases.R
 ee6fc8fd26de51073e491b8dc8a08e06 *man/convert.alias.Rd
-58213fffb062569fc2f41d523468e0b2 *man/convert.bm.Rd
+3624dc07b591df73700b1e5abbeb97fe *man/convert.bm.Rd
 edaddf6556d29ca2c4baa0cde4d851ef *man/convertId2.Rd
 8594e948408e0077467a24659178c5c3 *man/convertid.Rd
-fb99756c001b330badec05a3debc95b0 *man/get.bm.Rd
+63e32fc20bbaf7331a01f8cdfd01554f *man/get.bm.Rd
 23e2a640c91176194f27693034b5c159 *man/likely_symbol.Rd
-85298ca2852c94d47f7667abe3dbe09e *man/todisp2.Rd
+62db4b72167fb4a62e398d383a621e25 *man/todisp2.Rd
