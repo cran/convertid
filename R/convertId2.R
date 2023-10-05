@@ -28,9 +28,10 @@
 #' @import xml2
 #' @importFrom stats na.omit
 #' @importFrom utils read.delim
+#' @importFrom rappdirs user_cache_dir
 NULL
 #' Convert Gene Symbols to Ensembl Gene IDs or vice versa
-#' @description \command{convertId2} uses the Bimap interface in AnnotationDbi to extract information from
+#' @description \command{convertId2()} uses the Bimap interface in AnnotationDbi to extract information from
 #'     annotation packages. The function is limited to Human and Mouse annotations and is provided only as
 #'     fallback mechanism for the most common use cases in data analysis. Please use the Biomart interface
 #'     function \code{convert.bm()} for more flexibility.
@@ -151,7 +152,7 @@ convertId2 <-
   }
 
 #' Convert Symbols to Aliases and Vice Versa.
-#' @description \command{convert.alias} attempts to find all possible symbol-alias combinations for a given gene symbol, i.e.,
+#' @description \command{convert.alias()} attempts to find all possible symbol-alias combinations for a given gene symbol, i.e.,
 #'     it assumes the input ID to be either an Alias or a Symbol and performs multiple queries to find all possible
 #'     counterparts. The input IDs are converted to title and upper case before querying and all possibilities are tested.
 #'     There are species presets for Human and Mouse annotations.
@@ -205,7 +206,7 @@ convert.alias <-
   }
 
 #' Retrieve Additional Annotations from Biomart
-#' @description \command{convert.bm} is a wrapper for \command{get.bm} which in turn makes use of \command{getBM} from the \emph{biomaRt} package.
+#' @description \command{convert.bm()} is a wrapper for \command{get.bm()} which in turn makes use of \command{getBM()} from the \emph{biomaRt} package.
 #' It takes a matrix or data frame with the IDs to be converted in one column or as row names as input and returns a data frame with additional
 #' annotations after cleaning the fetched annotations and merging them with the input data frame.
 #' @param dat \code{matrix} or \code{data.frame}. Matrix or data frame with the ids to be converted in a column or as row names.
@@ -233,7 +234,7 @@ convert.alias <-
 convert.bm <-
   function(dat, id="ID", biom.data.set = c("human", "mouse"),
            biom.mart=c("ensembl", "mouse", "snp", "funcgen", "plants"),
-           host="www.ensembl.org", biom.filter="ensembl_gene_id",
+           host="https://www.ensembl.org", biom.filter="ensembl_gene_id",
            biom.attributes=c("ensembl_gene_id","hgnc_symbol","description"),
            sym.col="hgnc_symbol", rm.dups=FALSE, verbose = FALSE)
   {
@@ -256,15 +257,17 @@ convert.bm <-
   }
 
 #' Make a Query to Biomart.
-#' @description \command{get.bm} is a user-friendly wrapper for \command{getBM} from the \emph{biomaRt} package with default
+#' @description \command{get.bm()} is a user-friendly wrapper for \command{getBM()} from the \emph{biomaRt} package with default
 #'     settings for Human and Mouse.
 #' It sets all needed variables and performs the query.
 #' @param values \code{character} vector of ids to be converted.
-#' @param biom.data.set \code{character} of length one. Biomart data set to use. Defaults to 'human' (internally translated to "hsapiens_gene_ensembl" if `biom.mart="ensembl"`).
+#' @param biom.data.set \code{character} of length one. Biomart data set to use. Defaults to 'human' (internally translated to "hsapiens_gene_ensembl" if \code{biom.mart="ensembl"}).
 #' @param biom.mart \code{character} vector. Biomart to use (uses the first element of the vector), defaults to "ensembl".
 #' @param host \code{character} of length one. Host URL.
 #' @param biom.filter \code{character} of length one. Name of biomart filter, i.e., type of query ids, defaults to "ensembl_gene_id".
 #' @param biom.attributes \code{character} vector. Biomart attributes, i.e., type of desired result(s); make sure query id type is included!
+#' @param biom.cache \code{character}. Path name giving the location of the cache \command{getBM()} uses if \code{use.cache=TRUE}. Defaults to the value in the \emph{BIOMART_CACHE} environment variable.
+#' @param use.cache (\code{logical}). Should \command{getBM()} use the cache? Defaults to \code{TRUE} as in the \command{getBM()} function and is passed on to that.
 #' @param verbose (\code{logical}). Should verbose output be written to the console? Defaults to \code{FALSE}.
 #' @return  A data frame with the retrieved information.
 #' @author Vidal Fey
@@ -281,16 +284,18 @@ get.bm <-
   function(values,
            biom.data.set = c("human", "mouse"),
            biom.mart = c("ensembl", "mouse", "snp", "funcgen", "plants"),
-           host = "www.ensembl.org",
+           host = "https://www.ensembl.org",
            biom.filter = "ensembl_gene_id",
            biom.attributes = c("ensembl_gene_id",
                                "hgnc_symbol", "description"),
+           biom.cache = Sys.getenv(x = "BIOMART_CACHE"),
+           use.cache = TRUE,
            verbose = FALSE)
   {
     biom <- match.arg(biom.mart)
-    if (biom=="plants" && host == "www.ensembl.org") {
-      if (verbose) message(sQuote("Plants"), "mart requested. Setting host to ", sQuote("http://plants.ensembl.org"), "...")
-      host <- "http://plants.ensembl.org"
+    if (biom=="plants" && host == "https://www.ensembl.org") {
+      if (verbose) message(sQuote("Plants"), "mart requested. Setting host to ", sQuote("https://plants.ensembl.org"), "...")
+      host <- "https://plants.ensembl.org"
     }
     marts <- biomaRt::listMarts(host=host)[["biomart"]]
     marts1 <- sub("mart", "", tolower(marts))
@@ -324,16 +329,19 @@ get.bm <-
       values <- as.character(values)
     }
 
+    if (use.cache) {
+      .setBiomaRtCacheLocation(biom.cache)
+    }
     if (verbose) message("  Information requested: ", sQuote(setdiff(biom.attributes, biom.filter)), "...")
-    biomaRt::getBM(attributes=biom.attributes, filters=biom.filter, values=values, mart=mart)
+    biomaRt::getBM(attributes=biom.attributes, filters=biom.filter, values=values, mart=mart, useCache = use.cache)
   }
 
 #'
 #' Convenience Function to Convert Ensembl Gene IDs to Gene Symbols
-#' @description \command{todisp2} uses Biomart by employing \code{get.bm} to retrieve Gene Symbols for a set of Ensembl
+#' @description \command{todisp2()} uses Biomart by employing \command{get.bm()} to retrieve Gene Symbols for a set of Ensembl
 #'     Gene IDs. It is mainly meant as a fast way to convert IDs in standard gene expression analysis output to Symbols,
 #'     e.g., for visualisation, which is why the input ID type is hard coded to ENSG IDs. If Biomart is not available
-#'     the function can fall back to use \code{convertId2} or a user-provided data frame with corresponding ENSG IDs and
+#'     the function can fall back to use \command{convertId2()} or a user-provided data frame with corresponding ENSG IDs and
 #'     Symbols.
 #' @param ensg (\code{character}). Vector of Ensemble Gene IDs. Other ID types are not yet supported.
 #' @param lab (\code{data.frame}). A data frame with Ensembl Gene IDs as row names and Gene Symbols in the only column.
@@ -356,7 +364,7 @@ todisp2 <- function(ensg, lab=NULL, biomart=TRUE, verbose = FALSE)
       if (verbose) message("    Input is not Ensembl Gene IDs. Doing nothing.")
       return(ensg)
     }
-    sym <- get.bm(ensg, biom.data.set="hsapiens_gene_ensembl", biom.mart="ensembl", host="www.ensembl.org",
+    sym <- get.bm(ensg, biom.data.set="hsapiens_gene_ensembl", biom.mart="ensembl", host="https://www.ensembl.org",
                   biom.filter="ensembl_gene_id", biom.attributes=c("ensembl_gene_id","hgnc_symbol"),
                   verbose = verbose)
   } else if(!is.null(lab)) {

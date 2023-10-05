@@ -9,7 +9,7 @@ convert.bm(
   id = "ID",
   biom.data.set = c("human", "mouse"),
   biom.mart = c("ensembl", "mouse", "snp", "funcgen", "plants"),
-  host = "www.ensembl.org",
+  host = "https://www.ensembl.org",
   biom.filter = "ensembl_gene_id",
   biom.attributes = c("ensembl_gene_id", "hgnc_symbol", "description"),
   sym.col = "hgnc_symbol",
@@ -42,7 +42,7 @@ convert.bm(
 A data frame with the retrieved information.
 }
 \description{
-\command{convert.bm} is a wrapper for \command{get.bm} which in turn makes use of \command{getBM} from the \emph{biomaRt} package.
+\command{convert.bm()} is a wrapper for \command{get.bm()} which in turn makes use of \command{getBM()} from the \emph{biomaRt} package.
 It takes a matrix or data frame with the IDs to be converted in one column or as row names as input and returns a data frame with additional
 annotations after cleaning the fetched annotations and merging them with the input data frame.
 }
