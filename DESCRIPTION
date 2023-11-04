@@ -2,8 +2,8 @@ Package: convertid
 Type: Package
 Title: Convert Gene IDs Between Each Other and Fetch Annotations from
         Biomart
-Version: 0.1.6
-Date: 2023-10-05
+Version: 0.1.7
+Date: 2023-11-04
 Author: Vidal Fey [aut, cre],
   Henrik Edgren [aut]
 Authors@R: c(person("Vidal", "Fey", email = "vidal.fey@gmail.com", role=c("aut", "cre")), person("Henrik", "Edgren", email = "henrik.edgren@gmail.com", role = "aut"))
@@ -16,11 +16,11 @@ Description: Gene Symbols or Ensembl Gene IDs are converted using the Bimap inte
     attempts to determine the most likely current Gene Symbol.
 Depends: AnnotationDbi
 Imports: org.Hs.eg.db, org.Mm.eg.db, plyr, stringr, biomaRt, stats,
-        xml2, utils, rappdirs, assertthat
+        xml2, utils, rappdirs, assertthat, methods, httr, BiocFileCache
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-10-05 13:08:29 UTC; fsvife
+Packaged: 2023-11-04 13:36:04 UTC; fsvife
 Repository: CRAN
-Date/Publication: 2023-10-06 14:30:13 UTC
+Date/Publication: 2023-11-04 16:50:02 UTC
