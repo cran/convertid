@@ -1,11 +1,11 @@
-ca08cd31b9d7c8695ee0f4b03c98b255 *DESCRIPTION
+83061e25a0be8ac5a4a789f7c6ac87cf *DESCRIPTION
 6bb1cad42400dd5f8037f5c425f0d5f1 *NAMESPACE
 c95e92a9ef75131aeabbcaece695ce97 *R/biomart.R
-12d25245c3e24aebb4bfd93372def1fa *R/convertId2.R
+b1b401fb2c3ea4c8593f7ad3f2f54754 *R/convertId2.R
 d9d798142ee400a23eec5c185f88f843 *R/get_symbol_aliases.R
 eadaa85ad443e29488beb41c0bb8b374 *R/unexported.R
 4d9fd06c983a856fac64b767a7662a0d *man/convert.alias.Rd
-be2f936a5d7eb53f38052741c8957482 *man/convert.bm.Rd
+825c45f7e50dc156d0d7f436d92e0bf1 *man/convert.bm.Rd
 26a9e9d5ea4ac61bc497a838e51b5586 *man/convertId2.Rd
 8594e948408e0077467a24659178c5c3 *man/convertid.Rd
 3121679cf499cdf20243916064370601 *man/dot-cache.writable.Rd
