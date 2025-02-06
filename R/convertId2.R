@@ -1,5 +1,4 @@
 #' @title Convert Gene IDs Between Each Other and Fetch Annotations from Biomart
-#' @docType package
 #' @name convertid
 #' @description Gene Symbols or Ensembl Gene IDs are converted using the Bimap interface in 'AnnotationDbi' in convertId2() but
 #'     that function is only provided as fallback mechanism for the most common use cases in data analysis. The main function
@@ -19,6 +18,8 @@
 #' }
 #'
 #' @keywords package
+#' @keywords internal
+"_PACKAGE"
 #' @import org.Hs.eg.db
 #' @import org.Mm.eg.db
 #' @import AnnotationDbi
@@ -311,7 +312,7 @@ get.bm <-
     }
     if (verbose) message("Getting CURL SSL options for securely contacting host ", sQuote(host), "...")
     httr_config <- .get.httr_config(host = host, use.cache = use.cache)
-    marts <- biomaRt::listMarts(host=host, httr_config=httr_config)[["biomart"]]
+    marts <- biomaRt::listMarts(host=host, http_config=httr_config)[["biomart"]]
     marts1 <- sub("mart", "", tolower(marts))
     marts1 <- unlist(lapply(strsplit(tolower(marts1), "_"), function(x) x[length(x)]))
     biom <- marts[grep(biom, marts1)]
