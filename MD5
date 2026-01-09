@@ -1,8 +1,8 @@
-c96b60bed2592229db1b6ec25a432238 *DESCRIPTION
-6bb1cad42400dd5f8037f5c425f0d5f1 *NAMESPACE
+af0cc10d3988bfc59788ee958643bde8 *DESCRIPTION
+11acf69662e95f4b58dd79cc3dabad68 *NAMESPACE
 9077e004264d8f3ca2962316395f6a48 *R/biomart.R
-9d9584ec068f4c27efd6820003696a08 *R/convertId2.R
-d9d798142ee400a23eec5c185f88f843 *R/get_symbol_aliases.R
+0db8685699867e493082b8646573c51a *R/convertId2.R
+78bc7fc8cdc83cb28a46c8769dd9b3c4 *R/get_symbol_aliases.R
 eadaa85ad443e29488beb41c0bb8b374 *R/unexported.R
 4d9fd06c983a856fac64b767a7662a0d *man/convert.alias.Rd
 825c45f7e50dc156d0d7f436d92e0bf1 *man/convert.bm.Rd
@@ -17,5 +17,5 @@ ee90894fde004a8e9b04a995dd6ecea7 *man/dot-create.cache.Rd
 d909a7ec9cf126d6c5798b65bce182ee *man/dot-readFromCache.Rd
 a7cdf8674eaa2a3a4c6c8204ca4716c1 *man/dot-setCacheLocation.Rd
 5088178dc260b6330e899dccaeef2636 *man/get.bm.Rd
-23e2a640c91176194f27693034b5c159 *man/likely_symbol.Rd
+29b9947537cc1cf3cb41a2bf3f59ebe9 *man/likely_symbol.Rd
 aa54c53e6bb6d13c56277141d4ec9d95 *man/todisp2.Rd
