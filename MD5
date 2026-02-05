@@ -1,7 +1,7 @@
-1d303502e521dec5f917d524db273324 *DESCRIPTION
+41e9affa76ed022d1d051709fe9e7341 *DESCRIPTION
 11acf69662e95f4b58dd79cc3dabad68 *NAMESPACE
 9077e004264d8f3ca2962316395f6a48 *R/biomart.R
-f20f6ee2e65a690933aab81399eb3eb7 *R/convertId2.R
+cb2e43f9daf6e5fc5bea4f1a09726e48 *R/convertId2.R
 78bc7fc8cdc83cb28a46c8769dd9b3c4 *R/get_symbol_aliases.R
 eadaa85ad443e29488beb41c0bb8b374 *R/unexported.R
 4d9fd06c983a856fac64b767a7662a0d *man/convert.alias.Rd
@@ -18,4 +18,4 @@ d909a7ec9cf126d6c5798b65bce182ee *man/dot-readFromCache.Rd
 a7cdf8674eaa2a3a4c6c8204ca4716c1 *man/dot-setCacheLocation.Rd
 5088178dc260b6330e899dccaeef2636 *man/get.bm.Rd
 29b9947537cc1cf3cb41a2bf3f59ebe9 *man/likely_symbol.Rd
-8efe596313daf787fc67aa9bee396941 *man/todisp2.Rd
+a3c91f3a117c9e0aab592265c8312fd7 *man/todisp2.Rd
